@@ -1,0 +1,24 @@
+name: Accessibility barrier
+description: Report a barrier in the documentation, contribution process, or tools.
+title: "Accessibility: "
+body:
+  - type: markdown
+    attributes:
+      value: Describe the barrier in your own words. Medical details and private information are not needed.
+  - type: textarea
+    id: barrier
+    attributes:
+      label: Task and barrier
+      description: What were you trying to do, where did the barrier occur, and what happened?
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: What would help?
+      description: Optional expected behavior, suggested changes, or a preferred alternative format.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Optional OS, terminal, editor, browser, or assistive-tool details relevant to the barrier.

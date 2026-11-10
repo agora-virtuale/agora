@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability privately
+    url: https://github.com/agora-virtuale/agora/security/advisories/new
+    about: Use the private report form; keep sensitive details out of public issues.
+  - name: Project documentation
+    url: https://github.com/agora-virtuale/agora/tree/main/docs
+    about: Architecture, core contracts, module setup, and the implementation roadmap.

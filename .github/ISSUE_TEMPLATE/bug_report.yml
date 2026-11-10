@@ -1,0 +1,44 @@
+name: Bug report
+description: Report incorrect behavior or a build failure with a reproducible example.
+title: "Bug: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check existing issues and the README's current implementation status first.
+        For suspected vulnerabilities, use [private reporting](https://github.com/agora-virtuale/agora/security/advisories/new).
+        Use synthetic inputs and remove credentials or private data from examples and logs.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Actual and expected behavior
+      description: What happened, and what should have happened?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Provide minimal code or commands, input data, and a seed if randomness is involved.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include the commit, OS, compiler, CMake version, generator, language mode, and build configuration when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Optional sanitized compiler output, test failures, or relevant logs.
+      render: text
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Community standards
+      options:
+        - label: I have read the [code of conduct](https://github.com/agora-virtuale/agora/blob/main/CODE_OF_CONDUCT.md).
+          required: true

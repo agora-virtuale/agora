@@ -1,0 +1,37 @@
+name: Feature proposal
+description: Propose a focused capability with observable acceptance criteria.
+title: "Feature: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What would this enable, and who would use it?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the scope, inputs, outputs, and important constraints.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Give concrete examples or checks that would demonstrate the feature works.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and tradeoffs
+      description: Optional alternatives, compatibility concerns, dependencies, or measurement plans.
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Community standards
+      options:
+        - label: I have read the [code of conduct](https://github.com/agora-virtuale/agora/blob/main/CODE_OF_CONDUCT.md).
+          required: true

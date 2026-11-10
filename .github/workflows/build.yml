@@ -1,0 +1,34 @@
+name: Build
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-26.04, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Linux modules
+        if: runner.os == 'Linux'
+        run: cmake -S . -B build/ci -G Ninja -DCMAKE_CXX_COMPILER=g++-15 -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Debug
+      - name: Configure Windows modules
+        if: runner.os == 'Windows'
+        run: cmake -S . -B build/ci -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Debug
+      - name: Build
+        run: cmake --build build/ci --config Debug --parallel
+      - name: Test
+        run: ctest --test-dir build/ci -C Debug --output-on-failure
+  undefined-behavior:
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v4
+      # GCC 15 ICEs while serializing this module with UBSan enabled.
+      # Use an independent compiler while retaining full sanitizer coverage.
+      - name: Configure with UBSan
+        run: cmake -S . -B build/ubsan -G Ninja -DCMAKE_CXX_COMPILER=clang++-22 -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo "-DCMAKE_CXX_FLAGS=-fsanitize=undefined -fno-sanitize-recover=undefined"
+      - name: Build
+        run: cmake --build build/ubsan --parallel
+      - name: Test with UBSan
+        run: ctest --test-dir build/ubsan --output-on-failure
